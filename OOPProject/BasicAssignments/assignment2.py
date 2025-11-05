@@ -1,3 +1,4 @@
+# Basic Problem
 # 2. Given three inputs that are stored in the variables a, b, and c.
 # You need to print a a times and b b times  in a single line separated by c.
 
@@ -13,7 +14,7 @@ def print_custom(num1, num2, sep):
     # print(sep, end="")
     # print(str(num2) * int(num2))
 
-a = 6
-b = 7
-c = "x"
+a = int(input("Enter variable a: "))
+b = int(input("Enter variable b: "))
+c = input("Enter variable c: ")
 print_custom(a, b, c)
