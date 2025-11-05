@@ -9,9 +9,9 @@ def print_custom(num1, num2, sep):
         print(f"{num2}", end="")
 
     # alt solution:
-    # print(str(num1) * num1, end="")
+    # print(str(num1) * int(num1), end="")
     # print(sep, end="")
-    # print(str(num2) * num2)
+    # print(str(num2) * int(num2))
 
 a = 6
 b = 7
