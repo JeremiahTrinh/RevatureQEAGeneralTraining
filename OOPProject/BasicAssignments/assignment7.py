@@ -38,6 +38,6 @@ names2 = ["Alice", "Bob", "Charlie", "David"]
 ages2 = [30, 24, 35, 19]
 combined_nameAges = list(zip(names2, ages2))
 print(combined_nameAges)
-unzipped_names, unzipped_ages = zip(*combined_nameAges)
-print(list(unzipped_names))
-print(list(unzipped_ages))
+unzipped_names, unzipped_ages = map(lambda x: list(x), zip(*combined_nameAges))
+print(unzipped_names)
+print(unzipped_ages)
