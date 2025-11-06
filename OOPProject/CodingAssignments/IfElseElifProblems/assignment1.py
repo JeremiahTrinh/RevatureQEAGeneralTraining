@@ -64,6 +64,21 @@ else:
     print("Invalid input number")
     sys.exit("Invalid input number")
 
+# alt implementation for user_option input reading
+# match user_option:
+    # case 1:
+        # name = "water"
+        # cost = 1.0
+    # case 2:
+        # name = "cola"
+        # cost = 1.5
+    # case 3:
+        # name = "gatorade"
+        # cost = 2.0
+    # case _:
+        # print("Invalid input number")
+        # sys.exit("Invalid input number")
+
 user_money = insert_coins()
 change = user_money - cost
 
