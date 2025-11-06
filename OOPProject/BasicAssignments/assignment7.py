@@ -1,5 +1,5 @@
 # Originally created: 11/06/2025
-# Version: 1.0
+# Version: 1.0.1
 
 # Create a list of 5 numbers. Calculate and print their squares.
 nums = [13, 5, 6, 9, 12]
