@@ -8,3 +8,6 @@
 # Age : 23
 # City : Salem
 # Gender : Male
+dict7 = {"Name" : "Ram" , "Age" : 23 , "City" : "Salem", "Gender" : "Male"}
+for key, value in dict7.items():
+    print(f"{key}: {value}")

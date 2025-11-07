@@ -6,3 +6,8 @@
 # Dictionary 1 = {"Name" : "Ram" , "Age" : 23}
 # Dictionary 2 = {"City" : "Salem", "Gender" : "Male"}
 # Concatenate Dictionaries = {'Name' : 'Ram', 'Age' : 23, 'City' : 'Salem', 'Gender': 'Male'}
+dict1 = {"Name" : "Ram" , "Age" : 23}
+dict2 = {"City" : "Salem", "Gender" : "Male"}
+dict1.update(dict2)
+
+print(dict1)
