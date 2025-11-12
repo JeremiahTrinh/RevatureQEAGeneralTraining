@@ -18,3 +18,12 @@ Status Code
 HTTP version
 Headers
 Response body
+
+SOLID Principles
+https://en.wikipedia.org/wiki/SOLID
+S -> Single responsibility principle
+O -> Open-closed principle
+L -> Liskov substitution principle
+I -> Interface segregation principle
+D -> Dependency inversion principle
+OOP -> SOLID -> a set of principles to make source code more understandable, flexible, and maintainable
