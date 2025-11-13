@@ -79,19 +79,47 @@ def insert_samples():
         (11, 76.32, "Business-related handkerchief", "2025-05-30")
     ]
     sample_approvals = [
-        (6, "pending", 13, "Why are you work-expensing slushies", "2025-10-20"),
-        (4, "approved", 4, "Brunches were work-related and professional in nature", "2025-03-14"),
-        (3, "denied", 4, "No", "2025-01-14"),
+        (6, "pending", 13, "Why are you work-expensing slushies?!?", "2025-10-20"),
+        (4, "approved", 4, "Brunches were work-related and professional in nature.", "2025-03-14"),
+        (3, "denied", 4, "No.", "2025-01-14"),
         (5, "pending", None, None, None),
-        (8, "approved", 5, "Sure, whatever", "2025-07-10"),
-        (9, "denied", 5, "Recreational beer is not a work expense", "2025-06-10"),
+        (8, "approved", 5, "Sure, whatever.", "2025-07-10"),
+        (9, "denied", 5, "Recreational beer is not a work expense!", "2025-06-10"),
         (11, "pending", None, None, None),
         (2, "approved", 12, "Proper documentation of commuting provided", "2025-02-20"),
-        (10, "denied", 13, "The manager referenced in this expense does not exist", "2025-08-30"),
+        (10, "denied", 13, "The manager referenced in this expense does not exist.", "2025-08-30"),
         (1, "pending", 8, None, None)
     ]
+    query_insert_users = "INSERT INTO users (username, password, role) VALUES (?, ?, ?);"
+    query_insert_expenses = "INSERT INTO expenses (user_id, amount, description, date) VALUES (?, ?, ?, ?);"
+    query_insert_approvals = "INSERT INTO approvals (expense_id, status, reviewer, comment, review_date) VALUES (?, ?, ?, ?, ?);"
     try:
         with sql.connect(db) as conn:
             cur = conn.cursor()
+            cur.executemany(query_insert_users, sample_users)
+            conn.commit()
+            cur.executemany(query_insert_expenses, sample_expenses)
+            conn.commit()
+            cur.executemany(query_insert_approvals, sample_approvals)
+            conn.commit()
     except sql.Error as e:
         print(f"SQLite Error: {e}")
+
+if __name__ == "__main__":
+    create_tables()
+    insert_samples()
+    with sql.connect(db) as conn1:
+        df_users = pd.read_sql("SELECT * FROM users", conn1)
+        df_expenses = pd.read_sql("SELECT * FROM expenses", conn1)
+        df_approvals = pd.read_sql("SELECT * FROM approvals", conn1)
+
+    # Print results
+    pd.set_option('display.max_rows', None)
+    pd.set_option('display.max_columns', None)
+    pd.set_option('display.max_colwidth', None)
+    print("users:")
+    print(df_users)
+    print("\nexpenses:")
+    print(df_expenses)
+    print("\napprovals:")
+    print(df_approvals)

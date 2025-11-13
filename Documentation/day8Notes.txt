@@ -1,0 +1,13 @@
+# Day 8
+Nothing of note to record. Refer to corresponding hand notes.
+
+# Day 9
+Demo Assignment: Create string "-Hello <name>!-"  
+	-> use String API methods, e.g., length, trim, concat, etc.
+	-> stringDemo01.java
+
+Assignment: Write a Java program to return the factorial of an integer input. Do it two ways:
+	1) Iterative solution
+	2) Recursive solution
+
+*Went through and completed rest of Java assignments for today -> refer to core Java PPT for assignment details
