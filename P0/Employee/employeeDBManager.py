@@ -92,3 +92,10 @@ def delete_expense(expense_id):
         query = "DELETE FROM approvals WHERE expense_id = ?"
         cur.execute(query, (expense_id, ))
         conn.commit()
+
+def get_db():
+    with sql.connect(db) as conn:
+        df_users = pd.read_sql("SELECT * FROM users", conn)
+        df_expenses = pd.read_sql("SELECT * FROM expenses", conn)
+        df_approvals = pd.read_sql("SELECT * FROM approvals", conn)
+    return df_users, df_expenses, df_approvals
