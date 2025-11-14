@@ -10,7 +10,7 @@ db = '../expenses_database.db'
 # [X] Submit a new expense with details about amount and description
 # [X] View the status of my submitted expenses so that I know whether they are pending, approved, or denied.
 # [X] Edit expenses that are still pending so that I can correct mistakes before they are reviewed.
-# [] Delete expenses that are still pending so that I can correct mistakes before they are reviewed.
+# [X] Delete expenses that are still pending so that I can correct mistakes before they are reviewed.
 # [X] History of all my approved and denied expenses so that I can track my financial activity over time.
 
 def submit_expense(user_id, amount, description, date):
@@ -61,18 +61,24 @@ def view_expenses_history(user_id):
 def edit_expense(expense_id, amount=None, description=None, date=None):
     if amount is None or description is None or date is None:
         with sql.connect(db) as conn:
-            df = pd.read_sql("SELECT * FROM expenses WHERE expense_id = ?;", conn, params=(expense_id,))
+            df = pd.read_sql("SELECT * FROM expenses WHERE id = ?;", conn, params=(expense_id,))
     if amount is None:
         amount = df.loc[0, 'amount']
     if description is None:
         description = df.loc[0, 'description']
     if date is None:
         date = df.loc[0, 'date']
-    query = "UPDATE expenses SET amount = ?, description = ?, date = ? WHERE expense_id = ?;"
+    query = "UPDATE expenses SET amount = ?, description = ?, date = ? WHERE id = ?;"
     with sql.connect(db) as conn:
         cur = conn.cursor()
         cur.execute(query, (amount, description, date, expense_id))
         conn.commit()
 
 def delete_expense(expense_id):
-    pass
+    query = "DELETE FROM expenses WHERE id = ?"
+    with sql.connect(db) as conn:
+        cur = conn.cursor()
+        cur.execute(query, (expense_id, ))
+        query = "DELETE FROM approvals WHERE expense_id = ?"
+        cur.execute(query, (expense_id, ))
+        conn.commit()
